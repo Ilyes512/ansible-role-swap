@@ -9,6 +9,7 @@ galaxy_info:
     versions:
     - trusty
   categories:
+  - ansidev
   - development
   - system
   - web
