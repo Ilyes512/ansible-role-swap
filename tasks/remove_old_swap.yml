@@ -1,0 +1,11 @@
+---
+- name: Swap | Unmount swap
+  command: "sudo swapoff {{ swap_location }}"
+  when: ansible_swaptotal_mb > 1
+
+- name: Swap | Remove old swap
+  sudo: yes
+  file:
+    path: "{{ swap_location }}"
+    state: absent
+  register: removed_swap
