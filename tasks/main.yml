@@ -3,6 +3,18 @@
     path: "{{ swap_location }}"
   register: swap_file
 
+- debug:
+    msg: "swap_file.stat exists"
+    var: swap_file.stat.exists
+
+- debug:
+    msg: "swap_file.stat is a regular file"
+    var: swap_file.stat.isreg
+
+- debug:
+    msg: "Swap_file size does not equal swap_size_mb * 1024 * 1024"
+    var: swap_file.stat.size is defined and swap_file.stat.size != (swap_size_mb * 1024 * 1024)
+
 - include: remove_old_swap.yml
   when: swap_file.stat.exists and swap_file.stat.isreg and swap_file.stat.size != (swap_size_mb * 1024 * 1024)
 
