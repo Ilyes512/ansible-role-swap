@@ -4,7 +4,7 @@
   register: swap_file
 
 - include: remove_old_swap.yml
-  when: swap_file.stat.exists and swap_file.stat.isreg and swap_file.stat.size != swap_size_mb * 1024 * 1024
+  when: swap_file.stat.exists and swap_file.stat.isreg and swap_file.stat.size != (swap_size_mb * 1024 * 1024)
 
 - stat:
     path: "{{ swap_location }}"
