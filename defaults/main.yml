@@ -1,5 +1,5 @@
 ---
-swap_use_dd: true # false = fallocate
+swap_use_dd: false # false = fallocate
 swap_location: /swapfile
 swap_size_mb: 1024 # Dont use any suffix like mb/MB/MiB
 swap_swappiness: 10
