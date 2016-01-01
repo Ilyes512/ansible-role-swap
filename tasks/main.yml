@@ -21,7 +21,6 @@
 - stat:
     path: "{{ swap_location }}"
   register: swap_file
-  when: removed_swap.changed
 
 - name: Swap | Write swap file
   sudo: yes
