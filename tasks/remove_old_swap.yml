@@ -1,9 +1,9 @@
 ---
-- name: Swap | Unmount swap
+- name: Unmount swap
   command: "sudo swapoff {{ swap_location }}"
 
-- name: Swap | Remove old swap
-  sudo: yes
+- name: Remove old swap
+  become: yes
   file:
     path: "{{ swap_location }}"
     state: absent

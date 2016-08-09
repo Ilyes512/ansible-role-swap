@@ -1,5 +1,7 @@
 ---
 - hosts: localhost
   remote_user: travis
+  vars:
+    ansidev_production: true
   roles:
     - ansible-role-swap

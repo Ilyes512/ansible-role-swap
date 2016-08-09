@@ -10,7 +10,7 @@
     path: "{{ swap_location }}"
   register: swap_file
 
-- name: Swap | Write swap file
+- name: Write swap file
   become: yes
   command: |
     {% if swap_use_dd %}
@@ -22,7 +22,7 @@
     creates: "{{ swap_location }}"
   when: not swap_file.stat.exists
 
-- name: Swap | Change swap file permissions
+- name: Change swap file permissions
   become: yes
   file:
     path: "{{ swap_location }}"
@@ -31,7 +31,7 @@
     mode: 0600
     state: file
 
-- name: Swap | Check swap file type
+- name: Check swap file type
   command: "sudo file {{ swap_location }}"
   changed_when: false
   register: swapfile
@@ -40,7 +40,7 @@
   command: "sudo mkswap {{ swap_location }}"
   when: swapfile.stdout.find('swap file') == -1
 
-- name: Swap | Write swap entry in fstab
+- name: Write swap entry in fstab
   become: yes
   mount:
     name: none
@@ -54,11 +54,11 @@
 # * Quotes are needed becaue else it will be always marked as changed.
 #   See this issue for more info: https://github.com/ansible/ansible-modules-core/issues/1868
 
-- name: Swap | Mount swap
+- name: Mount swap
   command: "sudo swapon {{ swap_location }}"
   when: ansible_swaptotal_mb < 1 or (removed_swap is defined and removed_swap.changed)
 
-- name: Swap | Configure the swappiness
+- name: Configure the swappiness
   become: yes
   sysctl:
     name: vm.swappiness
@@ -66,7 +66,7 @@
     state: present
     reload: yes
 
-- name: Swap | Configure the cache pressure
+- name: Configure the cache pressure
   become: yes
   sysctl:
     name: vm.vfs_cache_pressure
