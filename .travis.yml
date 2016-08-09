@@ -34,3 +34,6 @@ script:
     ansible-playbook -i tests/inventory tests/$SITE --connection=local --extra-vars 'swap_size_mb=32'
     | grep -q 'changed=0.*failed=0'
     && (echo 'Idempotence test: pass' && exit 0)
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
