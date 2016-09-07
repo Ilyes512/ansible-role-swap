@@ -36,7 +36,7 @@
   changed_when: false
   register: swapfile
 
-- name: Swap | Make swap file
+- name: Make swap file
   command: "sudo mkswap {{ swap_location }}"
   when: swapfile.stdout.find('swap file') == -1
 
