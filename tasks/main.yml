@@ -32,12 +32,14 @@
     state: file
 
 - name: Check swap file type
-  command: "sudo file {{ swap_location }}"
+  become: yes
+  command: "file {{ swap_location }}"
   changed_when: false
   register: swapfile
 
 - name: Make swap file
-  command: "sudo mkswap {{ swap_location }}"
+  become: yes
+  command: "mkswap {{ swap_location }}"
   when: swapfile.stdout.find('swap file') == -1
 
 - name: Write swap entry in fstab
@@ -55,7 +57,8 @@
 #   See this issue for more info: https://github.com/ansible/ansible-modules-core/issues/1868
 
 - name: Mount swap
-  command: "sudo swapon {{ swap_location }}"
+  become: yes
+  command: "swapon {{ swap_location }}"
   when: ansible_swaptotal_mb < 1 or (removed_swap is defined and removed_swap.changed)
 
 - name: Configure the swappiness

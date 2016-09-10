@@ -1,6 +1,7 @@
 ---
 - name: Unmount swap
-  command: "sudo swapoff {{ swap_location }}"
+  become: yes
+  command: "swapoff {{ swap_location }}"
 
 - name: Remove old swap
   become: yes
