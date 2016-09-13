@@ -4,4 +4,4 @@
   vars:
     ansidev_production: true
   roles:
-    - ansible-role-swap
+    - role_under_test
