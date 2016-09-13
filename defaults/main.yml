@@ -1,6 +1,6 @@
 ---
 swap_use_dd: false # false = fallocate
 swap_location: /swapfile
-swap_size_mb: 1024 # Dont use any suffix like mb/MB/MiB
-swap_swappiness: 10
+swap_size_mb: 1024 # Do not use any suffix, e.g. mb, MB or MiB
+swap_swappiness: 60
 swap_cache_pressure: 50
