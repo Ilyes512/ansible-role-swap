@@ -9,7 +9,7 @@ env:
     - distro: centos7
       init: /usr/lib/systemd/systemd
       run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-      playbook: centos-7-test.yml
+      playbook: test.yml
     - distro: centos6
       init: /sbin/init
       run_opts: ""
