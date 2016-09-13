@@ -1,7 +1,5 @@
 ---
 - hosts: localhost
-  remote_user: travis
-  vars:
-    ansidev_production: true
+  swap_size_mb: 32
   roles:
     - role_under_test

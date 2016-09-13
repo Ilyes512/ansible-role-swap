@@ -45,6 +45,7 @@ script:
 
   # Test role.
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/${playbook}'
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm cat /etc/fstab'
 
   # Test role idempotence.
   - idempotence=$(mktemp)
@@ -59,10 +60,8 @@ script:
   - sudo docker stop "$(cat ${container_id})"
 
 after_failure:
-  # Check MySQL settings.
-  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm cat /var/log/mysql/error.log'
-  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm cat /var/log/mysql.err'
-  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm cat /var/log/mysql.log'
+  #placeholder Check MySQL settings.
+  #- 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm cat /var/log/mysql/error.log'
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
